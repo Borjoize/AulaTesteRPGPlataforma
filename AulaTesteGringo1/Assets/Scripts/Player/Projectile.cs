@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    [SerializeField] private float playerDamage =1;
+    [SerializeField] public float playerDamage =1;
 
     private float direction;
 
@@ -26,7 +26,8 @@ public class Projectile : MonoBehaviour
 
         _anima = GetComponent<Animator>();
 
-        if (TryGetComponent<Status>(out Status status))
+        //if (TryGetComponent<Status>(out Status status))
+        if (GameObject.FindGameObjectWithTag("Player").TryGetComponent<Status>(out Status status))
             {
                 status.OnAttackUp += (Status status) => {playerDamage++;};
                 Debug.Log("Supostamente eu funcionei");
@@ -60,7 +61,7 @@ public class Projectile : MonoBehaviour
 
         _anima.SetTrigger("Explode");
 
-        if (_collision.tag == "Enemy")
+        if (_collision.CompareTag("Enemy"))
         {
             _collision.GetComponent<Health>().TakeDamage(playerDamage);
             Debug.Log("Eu sou o inimigo e tomei dano");

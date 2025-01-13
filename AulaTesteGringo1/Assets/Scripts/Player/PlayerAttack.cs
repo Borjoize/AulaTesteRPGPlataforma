@@ -53,7 +53,12 @@ public class PlayerAttack : MonoBehaviour
         _projeteis[FindProjectile()].transform.position = _firePoint.position;
 
         //Isso aqui pega o projétil e ativa ele na direção certa
-        _projeteis[FindProjectile()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        //_projeteis[FindProjectile()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        //Tive que mudar pra esse novo pra ele corretamente chamar o playerDamage sem chance de não subir o lvl dele
+        //porque o projétil se desativou
+        Projectile projectile = _projeteis[FindProjectile()].GetComponent<Projectile>();
+        projectile.SetDirection(Mathf.Sign(transform.localScale.x));
+        projectile.playerDamage = _attackCD;
 
     }
 

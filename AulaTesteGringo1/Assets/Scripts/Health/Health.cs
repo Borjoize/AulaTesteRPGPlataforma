@@ -85,7 +85,6 @@ public class Health : MonoBehaviour
                 foreach (Behaviour component in components)
                 {
                     component.enabled = false;
-                    Debug.Log("Tomei dano");
                 }
 
                 dead = true;

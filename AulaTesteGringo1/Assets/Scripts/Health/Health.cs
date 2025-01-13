@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class Health : MonoBehaviour
     [Header ("Components")]
     [SerializeField] private Behaviour[] components;
 
-    public Action OnDeath;
+    //public Action OnDeath;
+    UnityEvent OnDeath;
 
 
     private void Awake()
@@ -67,12 +69,14 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float _damage)
     {
+        Debug.Log($"Minha vida atual: {_currentHealth}");
         _currentHealth = Mathf.Clamp(_currentHealth - _damage, 0, _maxHealth);
 
         if(_currentHealth > 0)
         {
             anima.SetTrigger("Hurt");
             StartCoroutine(Invulnerability());
+                    Debug.Log($"Agora eu tenho {_currentHealth} de vida");
         }
         else
         {

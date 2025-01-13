@@ -26,6 +26,11 @@ public class Projectile : MonoBehaviour
 
         _anima = GetComponent<Animator>();
 
+        if (TryGetComponent<Status>(out Status status))
+            {
+                status.OnAttackUp += (Status status) => {playerDamage++;};
+                Debug.Log("Supostamente eu funcionei");
+            }
     }
 
     private void Update()
@@ -43,7 +48,7 @@ public class Projectile : MonoBehaviour
 
         if (_lifetime > _lifetimeLimit)
         {
-            gameObject.SetActive(false);
+            Deactivate();
         }
     }
 
@@ -51,13 +56,14 @@ public class Projectile : MonoBehaviour
     {
         _hit = true;
 
-        _boxCollider2D.enabled = false;
+        //_collision.enabled = false;
 
         _anima.SetTrigger("Explode");
 
-        if (_boxCollider2D.tag == "Enemy")
+        if (_collision.tag == "Enemy")
         {
-            _boxCollider2D.GetComponent<Health>().TakeDamage(playerDamage);
+            _collision.GetComponent<Health>().TakeDamage(playerDamage);
+            Debug.Log("Eu sou o inimigo e tomei dano");
         }
     }
 

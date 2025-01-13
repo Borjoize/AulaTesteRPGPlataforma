@@ -26,10 +26,6 @@ public class Projectile : MonoBehaviour
 
         _anima = GetComponent<Animator>();
 
-        if (_boxCollider2D.tag == "Enemy")
-        {
-            _boxCollider2D.GetComponent<Health>().TakeDamage(playerDamage);
-        }
     }
 
     private void Update()
@@ -58,6 +54,11 @@ public class Projectile : MonoBehaviour
         _boxCollider2D.enabled = false;
 
         _anima.SetTrigger("Explode");
+
+        if (_boxCollider2D.tag == "Enemy")
+        {
+            _boxCollider2D.GetComponent<Health>().TakeDamage(playerDamage);
+        }
     }
 
     public void SetDirection(float _direction)

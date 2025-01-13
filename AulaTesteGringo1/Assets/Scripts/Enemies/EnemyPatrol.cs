@@ -39,7 +39,7 @@ public class EnemyPatrol : MonoBehaviour
             if(enemy.position.x >= leftLimit.position.x)
             {
             MoveTo(-1);
-            Debug.Log($"Mexi pra esquerda. Eu estou em {enemy.position.x} e o limite está em {leftLimit.position.x}");
+            //Debug.Log($"Mexi pra esquerda. Eu estou em {enemy.position.x} e o limite está em {leftLimit.position.x}");
             }
             else
             {
@@ -51,7 +51,7 @@ public class EnemyPatrol : MonoBehaviour
             if(enemy.position.x <= rightLimit.position.x)
             {
                 MoveTo(1);
-                Debug.Log($"Mexi pra direita. Eu estou em {enemy.position.x} e o limite está em {rightLimit.position.x}");
+                //Debug.Log($"Mexi pra direita. Eu estou em {enemy.position.x} e o limite está em {rightLimit.position.x}");
             }
             else
             {
